@@ -1,3 +1,5 @@
+[![Build Status](https://api.travis-ci.org/Eden-PHP/Session.png)](https://travis-ci.org/Eden-PHP/Session)
+===
 #DEVELOPMENT MODE
 
 ```
