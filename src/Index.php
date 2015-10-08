@@ -10,14 +10,14 @@
 namespace Eden\Session;
 
 /**
- * General available methods for common 
+ * General available methods for common
  * server session procedures.
  *
  * @vendor Eden
  * @package session
  * @author Christian Blanquera cblanquera@openovate.com
  */
-class Index extends Base implements \ArrayAccess, \Iterator 
+class Index extends Base implements \ArrayAccess, \Iterator
 {
     const ERROR_NOT_STARTED = 'Session is not started. Try using Eden\Session->start() first.';
 
@@ -29,9 +29,9 @@ class Index extends Base implements \ArrayAccess, \Iterator
      *
      * @return string
      */
-    public function __toString() 
+    public function __toString()
     {
-        if(!self::$session) {
+        if (!self::$session) {
             return '{}';
         }
 
@@ -43,9 +43,9 @@ class Index extends Base implements \ArrayAccess, \Iterator
      *
      * @return this
      */
-    public function clear() 
+    public function clear()
     {
-        if(!self::$session) {
+        if (!self::$session) {
             Exception::i()->setMessage(self::ERROR_NOT_STARTED)->trigger();
         }
 
@@ -60,9 +60,9 @@ class Index extends Base implements \ArrayAccess, \Iterator
      *
      * @return scalar
      */
-    public function current() 
+    public function current()
     {
-        if(!self::$session) {
+        if (!self::$session) {
             Exception::i()->setMessage(self::ERROR_NOT_STARTED)->trigger();
         }
 
@@ -75,20 +75,20 @@ class Index extends Base implements \ArrayAccess, \Iterator
      * @param string|null
      * @return scalar|null|array
      */
-    public function get($key = null) 
+    public function get($key = null)
     {
         //argument 1 must be a string or null
         Argument::i()->test(1, 'string', 'null');
 
-        if(!self::$session) {
+        if (!self::$session) {
             Exception::i()->setMessage(self::ERROR_NOT_STARTED)->trigger();
         }
 
-        if(is_null($key)) {
+        if (is_null($key)) {
             return $_SESSION;
         }
 
-        if(isset($_SESSION[$key])) {
+        if (isset($_SESSION[$key])) {
             return $_SESSION[$key];
         }
 
@@ -97,12 +97,12 @@ class Index extends Base implements \ArrayAccess, \Iterator
 
     /**
      * Returns session id
-     * 
+     *
      * @return int
      */
-    public function getId() 
+    public function getId()
     {
-        if(!self::$session) {
+        if (!self::$session) {
             Exception::i()->setMessage(self::ERROR_NOT_STARTED)->trigger();
         }
 
@@ -115,9 +115,9 @@ class Index extends Base implements \ArrayAccess, \Iterator
      *
      * @return int
      */
-    public function key() 
+    public function key()
     {
-        if(!self::$session) {
+        if (!self::$session) {
             Exception::i()->setMessage(self::ERROR_NOT_STARTED)->trigger();
         }
 
@@ -130,9 +130,9 @@ class Index extends Base implements \ArrayAccess, \Iterator
      *
      * @return void
      */
-    public function next() 
+    public function next()
     {
-        if(!self::$session) {
+        if (!self::$session) {
             Exception::i()->setMessage(self::ERROR_NOT_STARTED)->trigger();
         }
 
@@ -145,12 +145,12 @@ class Index extends Base implements \ArrayAccess, \Iterator
      * @param *scalar|null|bool
      * @return bool
      */
-    public function offsetExists($offset) 
+    public function offsetExists($offset)
     {
         //argument 1 must be scalar, null or bool
         Argument::i()->test(1, 'scalar', 'null', 'bool');
 
-        if(!self::$session) {
+        if (!self::$session) {
             Exception::i()->setMessage(self::ERROR_NOT_STARTED)->trigger();
         }
 
@@ -163,12 +163,12 @@ class Index extends Base implements \ArrayAccess, \Iterator
      * @param *scalar|null|bool
      * @return bool
      */
-    public function offsetGet($offset) 
+    public function offsetGet($offset)
     {
         //argument 1 must be scalar, null or bool
         Argument::i()->test(1, 'scalar', 'null', 'bool');
 
-        if(!self::$session) {
+        if (!self::$session) {
             Exception::i()->setMessage(self::ERROR_NOT_STARTED)->trigger();
         }
 
@@ -182,12 +182,12 @@ class Index extends Base implements \ArrayAccess, \Iterator
      * @param *mixed
      * @return void
      */
-    public function offsetSet($offset, $value) 
+    public function offsetSet($offset, $value)
     {
         //argument 1 must be scalar, null or bool
         Argument::i()->test(1, 'scalar', 'null', 'bool');
 
-        if(!self::$session) {
+        if (!self::$session) {
             Exception::i()->setMessage(self::ERROR_NOT_STARTED)->trigger();
         }
 
@@ -204,12 +204,12 @@ class Index extends Base implements \ArrayAccess, \Iterator
      * @param *scalar|null|bool
      * @return bool
      */
-    public function offsetUnset($offset) 
+    public function offsetUnset($offset)
     {
         //argument 1 must be scalar, null or bool
         Argument::i()->test(1, 'scalar', 'null', 'bool');
 
-        if(!self::$session) {
+        if (!self::$session) {
             Exception::i()->setMessage(self::ERROR_NOT_STARTED)->trigger();
         }
 
@@ -222,12 +222,12 @@ class Index extends Base implements \ArrayAccess, \Iterator
      * @param *string session name
      * @return this
      */
-    public function remove($name) 
+    public function remove($name)
     {
         //argument 1 must be a string
         Argument::i()->test(1, 'string');
 
-        if(isset($_SESSION[$name])) {
+        if (isset($_SESSION[$name])) {
             unset($_SESSION[$name]);
         }
 
@@ -240,9 +240,9 @@ class Index extends Base implements \ArrayAccess, \Iterator
      *
      * @return void
      */
-    public function rewind() 
+    public function rewind()
     {
-        if(!self::$session) {
+        if (!self::$session) {
             Exception::i()->setMessage(self::ERROR_NOT_STARTED)->trigger();
         }
 
@@ -256,16 +256,16 @@ class Index extends Base implements \ArrayAccess, \Iterator
      * @param mixed
      * @return this
      */
-    public function set($data, $value = null) 
+    public function set($data, $value = null)
     {
         //argument 1 must be a string or array
         Argument::i()->test(1, 'array', 'string');
 
-        if(!self::$session) {
+        if (!self::$session) {
             Exception::i()->setMessage(self::ERROR_NOT_STARTED)->trigger();
         }
 
-        if(is_array($data)) {
+        if (is_array($data)) {
             $_SESSION = $data;
             return $this;
         }
@@ -281,12 +281,12 @@ class Index extends Base implements \ArrayAccess, \Iterator
      * @param *int
      * @return int
      */
-    public function setId($sid) 
+    public function setId($sid)
     {
         //argument 1 must be an integer
         Argument::i()->test(1, 'int');
 
-        if(!self::$session) {
+        if (!self::$session) {
             Exception::i()->setMessage(self::ERROR_NOT_STARTED)->trigger();
         }
 
@@ -298,9 +298,9 @@ class Index extends Base implements \ArrayAccess, \Iterator
      *
      * @return this
      */
-    public function start() 
+    public function start()
     {
-        if(!session_id()) {
+        if (!session_id()) {
             self::$session = session_start();
         }
 
@@ -312,7 +312,7 @@ class Index extends Base implements \ArrayAccess, \Iterator
      *
      * @return this
      */
-    public function stop() 
+    public function stop()
     {
         self::$session = false;
         session_write_close();
@@ -325,12 +325,12 @@ class Index extends Base implements \ArrayAccess, \Iterator
      *
      * @return bool
      */
-    public function valid() 
+    public function valid()
     {
-        if(!self::$session) {
+        if (!self::$session) {
             Exception::i()->setMessage(self::ERROR_NOT_STARTED)->trigger();
         }
 
         return isset($_SESSION[$this->key()]);
-   }
+    }
 }
