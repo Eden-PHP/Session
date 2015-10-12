@@ -10,13 +10,11 @@
 namespace Eden\Session;
 
 /**
- * General available methods for common
- * server session procedures.
+ * Core Factory Class
  *
- * @vendor   Eden
- * @package  session
- * @author   Christian Blanquera <cblanquera@openovate.com>
- * @standard PSR-2
+ * @vendor Eden
+ * @package Session
+ * @author Christian Blanquera cblanquera@openovate.com
  */
 class Index extends Base implements \ArrayAccess, \Iterator
 {
@@ -42,7 +40,7 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * Removes all session data
      *
-     * @return this
+     * @return Eden\Session\Index
      */
     public function clear()
     {
@@ -73,8 +71,7 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * Returns data
      *
-     * @param string|null
-     *
+     * @param string|null   $key
      * @return scalar|null|array
      */
     public function get($key = null)
@@ -144,8 +141,7 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * isset using the ArrayAccess interface
      *
-     * @param *scalar|null|bool $offset The key to test if exists
-     *
+     * @param *scalar|null|bool $offset 
      * @return bool
      */
     public function offsetExists($offset)
@@ -163,9 +159,8 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * returns data using the ArrayAccess interface
      *
-     * @param *scalar|null|bool $offset The key to get
-     *
-     * @return mixed
+     * @param *scalar|null|bool $offset
+     * @return bool
      */
     public function offsetGet($offset)
     {
@@ -182,9 +177,8 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * Sets data using the ArrayAccess interface
      *
-     * @param *scalar|null|bool $offset The key to set
-     * @param mixed             $value  The value the key should be set to
-     *
+     * @param *scalar|null|bool $offset
+     * @param *mixed            $value
      * @return void
      */
     public function offsetSet($offset, $value)
@@ -206,9 +200,8 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * unsets using the ArrayAccess interface
      *
-     * @param *scalar|null|bool $offset The key to unset
-     *
-     * @return void
+     * @param *scalar|null|bool $offset
+     * @return bool
      */
     public function offsetUnset($offset)
     {
@@ -225,9 +218,8 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * Removes a session.
      *
-     * @param *string session name
-     *
-     * @return this
+     * @param *string session name  $name
+     * @return Eden\Session\Index
      */
     public function remove($name)
     {
@@ -259,10 +251,9 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * Sets data
      *
-     * @param *array|string
-     * @param mixed
-     *
-     * @return this
+     * @param *array|string $data
+     * @param mixed         $value
+     * @return Eden\Session\Index
      */
     public function set($data, $value = null)
     {
@@ -286,8 +277,7 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * Sets the session ID
      *
-     * @param *int
-     *
+     * @param *int  $sid
      * @return int
      */
     public function setId($sid)
@@ -305,7 +295,7 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * Starts a session
      *
-     * @return this
+     * @return Eden\Session\Index
      */
     public function start()
     {
@@ -319,7 +309,7 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * Starts a session
      *
-     * @return this
+     * @return Eden\Session\Index
      */
     public function stop()
     {
