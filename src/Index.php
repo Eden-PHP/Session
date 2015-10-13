@@ -30,6 +30,11 @@ class Index extends Base implements \ArrayAccess, \Iterator
     const INSTANCE = 1;
 
     /**
+     * @var bool $session Flag that designates if the session is started
+     */
+    protected static $session = false;
+
+    /**
      * if object to string, give out the json
      *
      * @return string
