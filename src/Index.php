@@ -1,27 +1,37 @@
 <?php //-->
-/*
- * This file is part of the Persistent package of the Eden PHP Library.
- * (c) 2013-2014 Openovate Labs
+/**
+ * This file is part of the Eden PHP Library.
+ * (c) 2014-2016 Openovate Labs
  *
- * Copyright and license information can be found at LICENSE
+ * Copyright and license information can be found at LICENSE.txt
  * distributed with this package.
  */
 
 namespace Eden\Session;
 
 /**
- * General available methods for common
- * server session procedures.
+ * General available methods for common session procedures.
  *
- * @vendor Eden
- * @package session
- * @author Christian Blanquera cblanquera@openovate.com
+ * @package  Eden
+ * @category Session
+ * @author   Christian Blanquera <cblanquera@openovate.com>
+ * @standard PSR-2
  */
 class Index extends Base implements \ArrayAccess, \Iterator
 {
+    /**
+     * @const string ERROR_NOT_STARTED Error template
+     */
     const ERROR_NOT_STARTED = 'Session is not started. Try using Eden\Session->start() first.';
 
+    /**
+     * @const int INSTANCE Flag that designates singleton when using ::i()
+     */
     const INSTANCE = 1;
+
+    /**
+     * @var bool $session Flag that designates if the session is started
+     */
     protected static $session = false;
 
     /**
@@ -41,7 +51,7 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * Removes all session data
      *
-     * @return this
+     * @return Eden\Session\Index
      */
     public function clear()
     {
@@ -72,7 +82,8 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * Returns data
      *
-     * @param string|null
+     * @param string|null $key The key from the session
+     *
      * @return scalar|null|array
      */
     public function get($key = null)
@@ -142,7 +153,8 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * isset using the ArrayAccess interface
      *
-     * @param *scalar|null|bool
+     * @param *scalar|null|bool $offset The key to test if exists
+     *
      * @return bool
      */
     public function offsetExists($offset)
@@ -160,8 +172,9 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * returns data using the ArrayAccess interface
      *
-     * @param *scalar|null|bool
-     * @return bool
+     * @param *scalar|null|bool $offset The key to get
+     *
+     * @return mixed
      */
     public function offsetGet($offset)
     {
@@ -178,8 +191,9 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * Sets data using the ArrayAccess interface
      *
-     * @param *scalar|null|bool
-     * @param *mixed
+     * @param *scalar|null|bool $offset The key to set
+     * @param mixed             $value  The value the key should be set to
+     *
      * @return void
      */
     public function offsetSet($offset, $value)
@@ -201,8 +215,9 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * unsets using the ArrayAccess interface
      *
-     * @param *scalar|null|bool
-     * @return bool
+     * @param *scalar|null|bool $offset The key to unset
+     *
+     * @return void
      */
     public function offsetUnset($offset)
     {
@@ -219,8 +234,9 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * Removes a session.
      *
-     * @param *string session name
-     * @return this
+     * @param *string $name session name
+     *
+     * @return Eden\Session\Index
      */
     public function remove($name)
     {
@@ -252,9 +268,10 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * Sets data
      *
-     * @param *array|string
-     * @param mixed
-     * @return this
+     * @param *array|string $data  The array data to set
+     * @param mixed         $value If data is a key then this is the value
+     *
+     * @return Eden\Session\Index
      */
     public function set($data, $value = null)
     {
@@ -278,7 +295,8 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * Sets the session ID
      *
-     * @param *int
+     * @param *int $id The prescribed session ID to use
+     *
      * @return int
      */
     public function setId($sid)
@@ -296,7 +314,7 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * Starts a session
      *
-     * @return this
+     * @return Eden\Session\Index
      */
     public function start()
     {
@@ -310,7 +328,7 @@ class Index extends Base implements \ArrayAccess, \Iterator
     /**
      * Starts a session
      *
-     * @return this
+     * @return Eden\Session\Index
      */
     public function stop()
     {
